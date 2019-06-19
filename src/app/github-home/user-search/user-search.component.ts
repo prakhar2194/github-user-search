@@ -22,7 +22,7 @@ export class UserSearchComponent implements OnInit {
 
 
   constructor(private gitUserService: GithubUserService) {
-    this.sortList = JSON.parse(JSON.stringify(sortListTemplate));
+    this.sortList = sortListTemplate;
     this.sortValue = this.sortList[0].value;
   }
 
