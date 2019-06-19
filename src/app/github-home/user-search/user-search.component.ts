@@ -30,7 +30,6 @@ export class UserSearchComponent implements OnInit {
   }
 
   sortChange(e) {
-    console.log("prakhar sortt", e);
     if (this.gridData.length > 0) {
       if (e == 'sortByNameAsc') {
         this.gridData.sort((x, y) => {
@@ -56,36 +55,18 @@ export class UserSearchComponent implements OnInit {
       }
       else if (e == 'sortByRankAsc') {
         this.gridData.sort((x, y) => {
-          if (x.login > y.login) {
-            return -1;
-          }
-          if (x.login < y.login) {
-            return 1;
-          }
-          return 0;
+          return x.score - y.score;
         });
       }
       else if (e == 'sortByRankDesc') {
         this.gridData.sort((x, y) => {
-          if (x.login > y.login) {
-            return -1;
-          }
-          if (x.login < y.login) {
-            return 1;
-          }
-          return 0;
+          return y.score - x.score;
         });
       }
     }
-
-    console.log("prakhar old", this.gridData);
-    //console.log("prakhar old", sortedArray);
-
   }
 
   onSearch(e) {
-    console.log("prakhar search", e);
-    console.log("prakhar search", e.length);
     if (e != null && e.length >= 3) {
       this.gitUserService.getUsers(e).subscribe(
         data => {
@@ -95,7 +76,6 @@ export class UserSearchComponent implements OnInit {
           this.resultCount = data.total_count;
           this.gridData = data.items;
           this.sortChange(this.sortValue);
-          console.log(data);
         },
         error => {
           console.log('server error');
@@ -112,18 +92,18 @@ export class UserSearchComponent implements OnInit {
 const sortListTemplate: Array<dropDown> = [
   {
     value: "sortByNameAsc",
-    text: "Sort by Name ^"
+    text: "Sort by Name Asc"
   },
   {
     value: "sortByNameDesc",
-    text: "Sort by Name v"
+    text: "Sort by Name Desc"
   },
   {
     value: "sortByRankAsc",
-    text: "Sort by Rank ^"
+    text: "Sort by Rank Asc"
   },
   {
     value: "sortByRankDesc",
-    text: "Sort by Rank v"
+    text: "Sort by Rank Desc"
   }
 ]

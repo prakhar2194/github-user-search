@@ -1,3 +1,5 @@
+$border:gainsboro;
+$btn-color:lightblue;
 
 .card-container{
     display: flex;
@@ -6,18 +8,63 @@
 }
 
 .user-card{
-    //margin: .7rem 0 .7rem 0;
     padding:.7rem;
     display: flex;
     flex-direction: row;
-    border: 1px solid gainsboro;
+    border: 1px solid $border;
 }
 
 .user-card-img{
     border-radius: 100%;
-    height:150px
+    height:100px
 }
 
 .user-card-body{
     padding-left: 1rem;
+}
+
+.no-data{
+    font-weight:500;
+    font-size: xx-large;
+    text-align: center;
+}
+
+.table-custom{
+    line-height: .7rem;
+    border: 1px solid $border;
+    border-top: transparent;
+}
+
+.subTitle{
+    font-weight: 500;
+}
+
+.card-text-custom{
+    font-size: 15px;
+    margin-bottom: .2rem !important;
+}
+
+.card-title {
+    margin-bottom: 0.4rem;
+}
+
+.card-subTitle{
+    margin-bottom: 2.5rem;
+    font-size: 15px;
+}
+
+.user-card-details{
+    transition: .4s ease-in-out;
+}
+
+.det-btn{
+    border: 1px solid $btn-color;
+    background-color: transparent;
+    color: $btn-color;
+    padding: 6px 23px;
+    border-radius: 3px;
+
+    &:hover{
+        color:yellow
+    }
 }

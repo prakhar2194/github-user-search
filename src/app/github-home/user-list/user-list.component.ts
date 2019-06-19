@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Users } from 'src/app/models/user.model';
+import { GithubUserService } from 'src/app/services/github-user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -10,26 +11,50 @@ export class UserListComponent implements OnInit {
 
   @Input() data: Array<Users>;
   userList: Array<Users> = [];
-  ifCollapsed:boolean=true;
-  constructor() { }
+  currentSelected: Users = null;
+  userRepoList: Array<any> = [];
+
+  constructor(private gitService: GithubUserService) { }
 
   ngOnInit() {
 
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
     this.userList = this.data
-    console.log("ngOnChanges", this.data);
   }
 
-  onDetailClick(e){
-    console.log("prakhar", e);
-    e.collapsed = !e.collapsed;
-  }
-  
-  onCollapseClick(e){
-    console.log("prakhar c", e);
-    e.collapsed = !e.collapsed;
+  onDetailClick(e) {
+    if (this.currentSelected == null) {
+      this.getUserRepo(e);
+    }
+    else {
+      this.onCollapseClick(this.currentSelected);
+      this.getUserRepo(e);
+    }
   }
 
+  onCollapseClick(e) {
+    e.collapsed = true;
+    this.currentSelected = null;
+  }
+
+  getUserRepo(e) {
+    this.userRepoList = null;
+    this.currentSelected = e
+    this.gitService.getUserRepos(this.currentSelected.login).subscribe(
+      data => {
+        if (data && data.length > 0) {
+          if (data.length > 10) {
+            data.splice(10, data.length);
+          }
+          this.currentSelected.collapsed = false;
+          this.userRepoList = data;
+        }
+      },
+      error => {
+        console.log("server error in user repo api");
+      }
+    );
+  }
 }

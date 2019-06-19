@@ -1,0 +1,19 @@
+.pagination-btn{
+    background:transparent;
+    border:transparent;
+    &:hover{
+        color:yellow;
+        border:1px solid lightblue;
+        border-radius:2px;
+    }
+}
+
+.page-number-display{
+    font-weight: bold;
+    font-size: 17px;
+    display: inline-block;
+    position: relative;
+    bottom: 6px;
+    color: lightblue;
+    cursor: pointer;
+}

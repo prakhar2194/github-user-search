@@ -13,4 +13,8 @@ export class GithubUserService {
   public getUsers(searchText:string):Observable<any>{
     return this.httpClient.get<Users>(`https://api.github.com/search/users?q=`+searchText);
   }
+
+  public getUserRepos(userName:string):Observable<any>{
+    return this.httpClient.get<Users>(`https://api.github.com/users/`+userName+'/repos');
+  }
 }

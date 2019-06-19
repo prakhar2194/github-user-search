@@ -6,12 +6,14 @@ import {FormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
 import { UserSearchComponent } from './github-home/user-search/user-search.component';
 import { UserListComponent } from './github-home/user-list/user-list.component';
+import { CustomPagingComponent } from './core/custom-paging/custom-paging.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserSearchComponent,
-    UserListComponent
+    UserListComponent,
+    CustomPagingComponent
   ],
   imports: [
     BrowserModule,

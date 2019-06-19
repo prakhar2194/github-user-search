@@ -1,37 +1,70 @@
-<!-- <div *ngIf='userList.length>0'> -->
 <div class="card-container" *ngFor='let user of userList'>
-    <div class="user-card">
-      <div>
-        <img class="user-card-img" src="{{user.avatar_url}}" alt="Card image cap">
-      </div>
-      <div class="user-card-body">
-        <h5 class="card-title">{{user.login}}</h5>
-        <p class="card-text">{{user.html_url}}</p>
-        <p class="card-text">score: {{user.score}}</p>
-        <p class="card-text">score: {{user.followers_url}}</p>
-      </div>
-      <div>
-        <button *ngIf='user.collapsed' (click)='onDetailClick(user)'>Details</button>
-        <button *ngIf='!user.collapsed' (click)='onCollapseClick(user)'>Collapse</button>
-      </div>
+  <div class="user-card">
+    <div>
+      <img class="user-card-img" src="{{user.avatar_url}}" alt="Card image cap">
     </div>
-    <div class="user-card-details" *ngIf='!user.collapsed'>
-      <div class="row">
-        <div class="col-6">
-          hello
-        </div>
-        <div class="col-6">
-            hello
-        </div>
-      </div>
-      <div class="row">
-          <div class="col-6">
-            hello
-          </div>
-          <div class="col-6">
-              hello
-          </div>
-      </div>
+    <div class="user-card-body">
+      <h5 class="card-title">{{user.login}}</h5>
+      <p class="card-subTitle"><span class="subTitle">Profile URL: </span><a href="{{user.html_url}}"
+          target="_blank">{{user.html_url}}</a></p>
+      <p class="card-text-custom"><span class="subTitle">Score: </span>{{user.score}}</p>
+      <p class="card-text-custom"><span class="subTitle">Follower Url: </span>{{user.followers_url}}</p>
+    </div>
+    <div>
+      <button class="det-btn" *ngIf='user.collapsed' (click)='onDetailClick(user)'>Details</button>
+      <button class="det-btn" *ngIf='!user.collapsed' (click)='onCollapseClick(user)'>Collapse</button>
     </div>
   </div>
-<!-- </div> -->
+  <div class="user-card-details" *ngIf='!user.collapsed'>
+    <div *ngIf='userRepoList.length>0' else RepoListNoData>
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-striped table-hover table-condensed table-custom" style="line-height:.7rem;">
+            <thead>
+              <tr>
+                <th>
+                  Repo Name
+                </th>
+                <th>
+                  Programming Language
+                </th>
+                <th>
+                  Open Issues Count
+                </th>
+                <th>
+                  Stargazers
+                </th>
+                <th>
+                  Followers
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let userRepo of userRepoList">
+                <td>
+                  {{userRepo.name}}
+                </td>
+                <td>
+                  {{userRepo.language}}
+                </td>
+                <td>
+                  {{userRepo.open_issues_count}}
+                </td>
+                <td>
+                  {{userRepo.stargazers_count}}
+                </td>
+                <td>
+                  {{userRepo.watchers}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <ng-template #RepoListNoData>
+      <div class="no-data">
+        No Data Found
+      </div>
+    </ng-template>
+  </div>

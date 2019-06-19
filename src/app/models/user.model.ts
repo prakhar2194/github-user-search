@@ -18,4 +18,5 @@ export class Users {
     subscriptions_url: string;
     type: string;
     url: string;
+    collapsed:boolean;
 }

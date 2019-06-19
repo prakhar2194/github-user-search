@@ -10,15 +10,15 @@
       </div>
       <div class="col-7">
         <input type="search" class="form-control" [(ngModel)]="searchUser" (ngModelChange)="onSearch($event)"
-          id="searchText" placeholder="search">
+          id="searchText" placeholder="Search - Type minimum 3 characters">
       </div>
     </div>
   </div>
 </header>
 <div class="container">
-  <div *ngIf='gridData.length>0'>Total Results:{{resultCount}}</div>
+  <div class='count-header' *ngIf='gridData.length>0'>Total Results : {{resultCount}}</div>
   <app-user-list [data]="gridData"></app-user-list>
-</div>
-<div class="custom-paging">
-  Hi paging
+  <div *ngIf='gridData.length>0' class="custom-paging">
+    <app-custom-paging></app-custom-paging>
+  </div>
 </div>
