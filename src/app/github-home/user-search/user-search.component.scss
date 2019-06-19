@@ -1,7 +1,7 @@
+@import '../../../styles.scss';
+
 .header-search{
-    background-color: blue;
-    //padding-left: 10%;
-    //padding-right:10%;
+    background-color: $header-color;
     padding-top:2rem;
     padding-bottom: 2rem;
 }

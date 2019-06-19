@@ -1,9 +1,11 @@
+@import '../../../styles.scss';
+
 .pagination-btn{
     background:transparent;
     border:transparent;
     &:hover{
-        color:yellow;
-        border:1px solid lightblue;
+        color:$btn-hover;
+        border:1px solid $btn-color;
         border-radius:2px;
     }
 }
@@ -14,6 +16,6 @@
     display: inline-block;
     position: relative;
     bottom: 6px;
-    color: lightblue;
+    color: $btn-color;
     cursor: pointer;
 }

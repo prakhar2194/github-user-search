@@ -1,5 +1,4 @@
-$border:gainsboro;
-$btn-color:lightblue;
+@import '../../../styles.scss';
 
 .card-container{
     display: flex;
@@ -65,6 +64,6 @@ $btn-color:lightblue;
     border-radius: 3px;
 
     &:hover{
-        color:yellow
+        color:$btn-hover;
     }
 }
