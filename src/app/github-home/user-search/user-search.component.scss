@@ -15,7 +15,12 @@
     padding-bottom: 5px;
 }
 
+.custom-paging-top{
+    float: right;
+    display:inline-block;
+}
+
 .count-header{
-    margin-top: .7rem;
     font-weight: bold;
+    display: inline-block;
 }

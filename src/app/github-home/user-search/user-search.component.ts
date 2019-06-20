@@ -14,6 +14,7 @@ interface dropDown {
 })
 export class UserSearchComponent implements OnInit {
 
+  originalGridData: Array<Users> = [];
   gridData: Array<Users> = [];
   resultCount: number;
   searchUser: string;
@@ -30,9 +31,9 @@ export class UserSearchComponent implements OnInit {
   }
 
   sortChange(e) {
-    if (this.gridData.length > 0) {
+    if (this.originalGridData.length > 0) {
       if (e == 'sortByNameAsc') {
-        this.gridData.sort((x, y) => {
+        this.originalGridData.sort((x, y) => {
           if (x.login > y.login) {
             return 1;
           }
@@ -43,7 +44,7 @@ export class UserSearchComponent implements OnInit {
         });
       }
       else if (e == 'sortByNameDesc') {
-        this.gridData.sort((x, y) => {
+        this.originalGridData.sort((x, y) => {
           if (x.login > y.login) {
             return -1;
           }
@@ -54,12 +55,12 @@ export class UserSearchComponent implements OnInit {
         });
       }
       else if (e == 'sortByRankAsc') {
-        this.gridData.sort((x, y) => {
+        this.originalGridData.sort((x, y) => {
           return x.score - y.score;
         });
       }
       else if (e == 'sortByRankDesc') {
-        this.gridData.sort((x, y) => {
+        this.originalGridData.sort((x, y) => {
           return y.score - x.score;
         });
       }
@@ -74,7 +75,7 @@ export class UserSearchComponent implements OnInit {
             element.collapsed = true;
           });
           this.resultCount = data.total_count;
-          this.gridData = data.items;
+          this.originalGridData = data.items;
           this.sortChange(this.sortValue);
         },
         error => {
@@ -83,10 +84,25 @@ export class UserSearchComponent implements OnInit {
       );
     }
     else {
-      this.gridData = [];
+      this.originalGridData = [];
     }
   }
 
+  onPageinationClicked(e:any) {
+    this.gitUserService.getUserPageWise(this.searchUser, e.pageDisplayed).subscribe(
+      data =>{
+        data.items.forEach(element => {
+          element.collapsed = true;
+        });
+        this.resultCount = data.total_count;
+        this.originalGridData = data.items;
+        this.sortChange(this.sortValue);
+      },
+      error=>{
+        console.log('server error');
+      }
+    );
+  }
 }
 
 const sortListTemplate: Array<dropDown> = [
@@ -106,4 +122,4 @@ const sortListTemplate: Array<dropDown> = [
     value: "sortByRankDesc",
     text: "Sort by Rank Desc"
   }
-]
+];

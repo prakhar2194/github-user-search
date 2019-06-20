@@ -1,20 +1,20 @@
-<button class="pagination-btn" title="First page">
+<button class="pagination-btn" title="First page" (click)='onFirstPageClicked()'>
   <i class="material-icons">
     first_page
   </i>
 </button>
-<button class="pagination-btn" disabled="true" title="Previous page">
+<button class="pagination-btn" disabled="true" title="Previous page" (click)='onPreviousPageClicked()'>
   <i class="material-icons">
     chevron_left
   </i>
 </button>
-<div class="page-number-display" title="Current page">{{pageNumber}}</div>
-<button class="pagination-btn" title="Next page">
+<div class="page-number-display" title="Current page">{{currentPage}}</div>
+<button class="pagination-btn" title="Next page" (click)='onNextPageClicked()'>
   <i class="material-icons">
     chevron_right
   </i>
 </button>
-<button class="pagination-btn" title="Last page">
+<button class="pagination-btn" title="Last page" (click)='onLastPageClicked()'>
   <i class="material-icons">
     last_page
   </i>

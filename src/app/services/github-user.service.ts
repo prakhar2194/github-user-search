@@ -14,6 +14,10 @@ export class GithubUserService {
     return this.httpClient.get<Users>(`https://api.github.com/search/users?q=`+searchText);
   }
 
+  public getUserPageWise(searchText:string, pageNumber: number):Observable<any>{
+    return this.httpClient.get<Users>(`https://api.github.com/search/users?q=`+searchText+'&page='+pageNumber);
+  }
+
   public getUserRepos(userName:string):Observable<any>{
     return this.httpClient.get<Users>(`https://api.github.com/users/`+userName+'/repos');
   }

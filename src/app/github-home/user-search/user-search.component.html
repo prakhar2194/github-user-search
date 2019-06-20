@@ -16,9 +16,16 @@
   </div>
 </header>
 <div class="container">
-  <div class='count-header' *ngIf='gridData.length>0'>Total Results : {{resultCount}}</div>
-  <app-user-list [data]="gridData"></app-user-list>
-  <div *ngIf='gridData.length>0' class="custom-paging">
-    <app-custom-paging></app-custom-paging>
+  <div style="margin-top: .7rem;" *ngIf='originalGridData.length>0'>
+    <div class='count-header' *ngIf='originalGridData.length>0'>Total Results : {{resultCount}}</div>
+    <div *ngIf='originalGridData.length>0' class="custom-paging-top">
+      <app-custom-paging [totalItems]="resultCount" (pageinationActionClicked)="onPageinationClicked($event)">
+      </app-custom-paging>
+    </div>
+  </div>
+  <app-user-list *ngIf='originalGridData.length>0' [data]="originalGridData"></app-user-list>
+  <div *ngIf='originalGridData.length>0' class="custom-paging">
+    <app-custom-paging [totalItems]="resultCount" (pageinationActionClicked)="onPageinationClicked($event)">
+    </app-custom-paging>
   </div>
 </div>
