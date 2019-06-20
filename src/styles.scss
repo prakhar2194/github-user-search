@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-$header-color:blue;
+$header-color:#3D85C6;
 $border:gainsboro;
 $btn-color:lightblue;
 $btn-hover:yellow;
+$app-bg:#F6F6F6;
+
+body{
+    background-color: $app-bg
+}
