@@ -19,8 +19,7 @@
   <div style="margin-top: .7rem;" *ngIf='originalGridData.length>0'>
     <div class='count-header' *ngIf='originalGridData.length>0'>Total Results : {{resultCount}}</div>
     <div *ngIf='originalGridData.length>0' class="custom-paging-top">
-      <app-custom-paging [totalItems]="resultCount" (pageinationActionClicked)="onPageinationClicked($event)">
-      </app-custom-paging>
+      <span style="font-weight:bold; padding-right:2px;">Page no.: {{currentPage}}</span>
     </div>
   </div>
   <app-user-list *ngIf='originalGridData.length>0' [data]="originalGridData"></app-user-list>

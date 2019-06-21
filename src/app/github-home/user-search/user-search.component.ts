@@ -15,7 +15,7 @@ interface dropDown {
 export class UserSearchComponent implements OnInit {
 
   originalGridData: Array<Users> = [];
-  gridData: Array<Users> = [];
+  currentPage: number=1;
   resultCount: number;
   searchUser: string;
   sortValue: string;
@@ -94,6 +94,7 @@ export class UserSearchComponent implements OnInit {
         data.items.forEach(element => {
           element.collapsed = true;
         });
+        this.currentPage = e.pageDisplayed;
         this.resultCount = data.total_count;
         this.originalGridData = data.items;
         this.sortChange(this.sortValue);

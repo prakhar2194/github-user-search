@@ -3,7 +3,12 @@
     first_page
   </i>
 </button>
-<button class="pagination-btn" disabled="true" title="Previous page" (click)='onPreviousPageClicked()'>
+<button class="pagination-btn" title="-10 page" (click)='onPrev10PageClicked()'>
+  <i class="material-icons">
+    fast_rewind
+  </i>
+</button>
+<button class="pagination-btn" title="Previous page" (click)='onPreviousPageClicked()'>
   <i class="material-icons">
     chevron_left
   </i>
@@ -12,6 +17,11 @@
 <button class="pagination-btn" title="Next page" (click)='onNextPageClicked()'>
   <i class="material-icons">
     chevron_right
+  </i>
+</button>
+<button class="pagination-btn" title="+10 page" (click)='onNext10PageClicked()'>
+  <i class="material-icons">
+    fast_forward
   </i>
 </button>
 <button class="pagination-btn" title="Last page" (click)='onLastPageClicked()'>

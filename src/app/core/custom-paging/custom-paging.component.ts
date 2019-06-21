@@ -13,18 +13,18 @@ interface iPageClicked {
 
 export class CustomPagingComponent implements OnInit {
 
-  pageClicked:iPageClicked;
+  pageClicked: iPageClicked;
   currentPage: number = 1;
   lastPage: number;
   FirstPage: number = 1;
   itemDisplayCount: number = 30;
   @Input() totalItems: number;
   @Output() pageinationActionClicked = new EventEmitter<any>();
-  //@Output() currentPageEmit = new EventEmitter<number>();
-  constructor() { 
-    this.pageClicked={
-      action:'current',
-      pageDisplayed:1
+
+  constructor() {
+    this.pageClicked = {
+      action: 'current',
+      pageDisplayed: 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
     };
   }
 
@@ -32,11 +32,11 @@ export class CustomPagingComponent implements OnInit {
     this.calLastPage();
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
     this.calLastPage();
   }
 
-  calLastPage(){
+  calLastPage() {
     //github doesnot allow to search more than 1000 records.
     if (this.totalItems > 1020) {
       this.lastPage = 34;
@@ -53,11 +53,19 @@ export class CustomPagingComponent implements OnInit {
   }
 
   onPreviousPageClicked() {
-    this.pageinationActionClicked.emit('Prev');
+    if (!(this.currentPage - 1 < this.FirstPage)) {
+      this.currentPage = this.currentPage - 1;
+      this.setPageClicked('Prev10', this.currentPage);
+      this.pageinationActionClicked.emit(this.pageClicked);
+    }
   }
 
   onNextPageClicked() {
-    this.pageinationActionClicked.emit('Next');
+    if (!(this.currentPage + 1 > this.lastPage)) {
+      this.currentPage = this.currentPage + 1;
+      this.setPageClicked('Next', this.currentPage);
+      this.pageinationActionClicked.emit(this.pageClicked);
+    }
   }
 
   onLastPageClicked() {
@@ -66,7 +74,23 @@ export class CustomPagingComponent implements OnInit {
     this.pageinationActionClicked.emit(this.pageClicked);
   }
 
-  setPageClicked(action:string, pageNumber:number){
+  onPrev10PageClicked() {
+    if (!(this.currentPage - 10 < this.FirstPage)) {
+      this.currentPage = this.currentPage - 10;
+      this.setPageClicked('Prev10', this.currentPage);
+      this.pageinationActionClicked.emit(this.pageClicked);
+    }
+  }
+
+  onNext10PageClicked(){
+    if (!(this.currentPage + 10 > this.lastPage)) {
+      this.currentPage = this.currentPage + 10;
+      this.setPageClicked('Next', this.currentPage);
+      this.pageinationActionClicked.emit(this.pageClicked);
+    }
+  }
+
+  setPageClicked(action: string, pageNumber: number) {
     this.pageClicked.action = action;
     this.pageClicked.pageDisplayed = pageNumber;
   }
